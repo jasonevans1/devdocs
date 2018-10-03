@@ -1,71 +1,31 @@
 ---
 group: rest-api
-title: Manage low-quantity notifications
+title: Check salable quantities
 ---
 
-A merchant can configure 
+Magento provides two endpoints that allow you to check whether a product from a specified stock is salable and the available quantity.
 
 **Service names**
 
 ```
-inventoryLowQuantityNotificationApiGetSourceItemConfigurationSaveV1
-inventoryLowQuantityNotificationApiGetSourceItemConfigurationV1
-inventoryLowQuantityNotificationApiDeleteSourceItemConfigurationV1
+inventorySalesApiIsProductSalableV1
+inventorySalesApiGetProductSalabilituV1
 ```
-
 
 **REST endpoints**
 
 ```
-POST /V1/inventory/low-quantity-notification
-GET /V1/inventory/low-quantity-notification/:sourceCode/:sku
-DELETE /V1/inventory/low-quantity-notification
+GET /V1/inventory/is-product-salable/:sku/:stockId
+GET /V1/inventory/get-product-salable-quantity/:sku/:stockId
 ```
 
-**sourceItemConfigurations parameters**
+## Check whether a product is salable
 
-
-Name | Description | Type | Requirements
---- | --- | --- | ---
-`source_code` | The product's assigned source code  | String | Required for POST and DELETE operations
-`notify_stock_qty` | The threshold at which Magento notifies the merchant that the salable quantity of a product is low | Integer | Required for POST operations
-`sku` | The product   | String | Required for POST and DELETE operations
-{:style="table-layout:auto;"}
-
-## Create a low quantity notification
-
-
+This call returns boolean value that indicates whether the product from the specified stock is salable.
 
 **Sample usage**
 
-`POST /V1/inventory/low-quantity-notification`
-
-**Payload**
-
-``` json
-{
-  "sourceItemConfigurations": [
-    {
-      "source_code": "reno_wh",
-      "notify_stock_qty": 10,
-      "sku": "sp2"
-    }
-  ]
-}
-```
-
-**Response**
-
-An empty array `[]`
-
-
-## Return low-quantity notification information
-
-This call returns detailed information about
-
-**Sample usage**
-
-`GET /V1/inventory/low-quantity-notification/reno_wh/sp2`
+`GET /V1/inventory/is-product-salable/sp2/2`
 
 **Payload**
 
@@ -73,30 +33,20 @@ None
 
 **Response**
 
-``` json
+`true` or `false`
 
-Response body
-{
-"source_code": "reno_wh",
-"notify_stock_qty": 10,
-"sku": "sp2"
-}
-```
+## Check the available quantity of a salable product
 
-## Delete a low-quantity notification
-
-
+This call returns the available quantity of a product assigned to the specified stock ID.
 
 **Sample usage**
 
-`DELETE /V1/inventory/low-quantity-notification`
+GET /V1/inventory/get-product-salable-quantity/sp2/2
 
 **Payload**
 
-
+None
 
 **Response**
 
-Magento returns an empty array.
-
-`[]`
+An integer, such as `15`.
