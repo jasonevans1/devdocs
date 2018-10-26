@@ -1,0 +1,2633 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "dev-2.3-develop",
+        "title": "Magento B2B"
+    },
+    "host": "magento2.vagrant12",
+    "basePath": "/rest/default",
+    "schemes": [
+        "http"
+    ],
+    "tags": [
+        {
+            "name": "Customer balance",
+            "description": "Customer balance(store credit) operations"
+        },
+        {
+            "name": "Gift card",
+            "description": "Interface GiftCardAccountManagementInterface"
+        },
+        {
+            "name": "Gift registry",
+            "description": "Interface ShippingMethodManagementInterface"
+        },
+        {
+            "name": "Gift wrapping",
+            "description": "Interface WrappingRepositoryInterface"
+        },
+        {
+            "name": "Reward",
+            "description": "Interface RewardManagementInterface"
+        },
+        {
+            "name": "RMA",
+            "description": "Interface CommentRepositoryInterface"
+        },
+        {
+            "name": "Worldpay",
+            "description": "Interface GuestPaymentInformationManagementProxyInterface"
+        }
+    ],
+    "paths": {
+        "/V1/carts/mine/balance/apply": {
+            "post": {
+                "tags": [
+                    "Customer balance"
+                ],
+                "description": "Apply store credit",
+                "operationId": "/V1/carts/mine/balance/apply",
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/{quoteId}/giftCards": {
+            "get": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "Return GiftCard Account cards",
+                "operationId": "/V1/carts/{quoteId}/giftCards",
+                "parameters": [
+                    {
+                        "name": "quoteId",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/gift-card-account-data-gift-card-account-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/{cartId}/giftCards": {
+            "put": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "",
+                "operationId": "/V1/carts/{cartId}/giftCards",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "giftCardAccountGiftCardAccountManagementV1SaveByQuoteIdPutBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "giftCardAccountData"
+                            ],
+                            "properties": {
+                                "giftCardAccountData": {
+                                    "$ref": "#/definitions/gift-card-account-data-gift-card-account-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/{cartId}/giftCards/{giftCardCode}": {
+            "delete": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "Remove GiftCard Account entity",
+                "operationId": "/V1/carts/{cartId}/giftCards/{giftCardCode",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "giftCardCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/mine/giftCards/{giftCardCode}": {
+            "delete": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "Remove GiftCard Account entity",
+                "operationId": "/V1/carts/mine/giftCards/{giftCardCode",
+                "parameters": [
+                    {
+                        "name": "giftCardCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/mine/giftCards": {
+            "post": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "",
+                "operationId": "/V1/carts/mine/giftCards",
+                "parameters": [
+                    {
+                        "name": "Gift cardSaveByQuoteIdPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "giftCardAccountData"
+                            ],
+                            "properties": {
+                                "giftCardAccountData": {
+                                    "$ref": "#/definitions/gift-card-account-data-gift-card-account-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/mine/checkGiftCard/{giftCardCode}": {
+            "get": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "",
+                "operationId": "/V1/carts/mine/checkGiftCard/{giftCardCode",
+                "parameters": [
+                    {
+                        "name": "giftCardCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/guest-carts/{cartId}/giftCards/{giftCardCode}": {
+            "delete": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "Remove GiftCard Account entity",
+                "operationId": "/V1/carts/guest-carts/{cartId}/giftCards/{giftCardCode",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "giftCardCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/guest-carts/{cartId}/giftCards": {
+            "post": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "",
+                "operationId": "/V1/carts/guest-carts/{cartId}/giftCards",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "giftCardAccountGuestGiftCardAccountManagementV1AddGiftCardPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "giftCardAccountData"
+                            ],
+                            "properties": {
+                                "giftCardAccountData": {
+                                    "$ref": "#/definitions/gift-card-account-data-gift-card-account-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/carts/guest-carts/{cartId}/checkGiftCard/{giftCardCode}": {
+            "get": {
+                "tags": [
+                    "Gift card"
+                ],
+                "description": "",
+                "operationId": "/V1/carts/guest-carts/{cartId}/checkGiftCard/{giftCardCode",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "giftCardCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/guest-giftregistry/{cartId}/estimate-shipping-methods": {
+            "post": {
+                "tags": [
+                    "Gift registry"
+                ],
+                "description": "Estimate shipping",
+                "operationId": "/V1/guest-giftregistry/{cartId}/estimate-shipping-methods",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "The shopping cart ID."
+                    },
+                    {
+                        "name": "giftRegistryGuestCartShippingMethodManagementV1EstimateByRegistryIdPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "registryId"
+                            ],
+                            "properties": {
+                                "registryId": {
+                                    "type": "integer",
+                                    "description": "The estimate registry id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "description": "An array of shipping methods.",
+                            "items": {
+                                "$ref": "#/definitions/quote-data-shipping-method-interface"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/giftregistry/mine/estimate-shipping-methods": {
+            "post": {
+                "tags": [
+                    "Gift registry"
+                ],
+                "description": "Estimate shipping",
+                "operationId": "/V1/giftregistry/mine/estimate-shipping-methods",
+                "parameters": [
+                    {
+                        "name": "giftRegistryShippingMethodManagementV1EstimateByRegistryIdPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "registryId"
+                            ],
+                            "properties": {
+                                "registryId": {
+                                    "type": "integer",
+                                    "description": "The estimate registry id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "description": "An array of shipping methods.",
+                            "items": {
+                                "$ref": "#/definitions/quote-data-shipping-method-interface"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/gift-wrappings/{id}": {
+            "get": {
+                "tags": [
+                    "Gift wrapping"
+                ],
+                "description": "Return data object for specified wrapping ID and store.",
+                "operationId": "/V1/gift-wrappings/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "storeId",
+                        "in": "query",
+                        "type": "integer",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Gift wrapping"
+                ],
+                "description": "Delete gift wrapping",
+                "operationId": "giftWrappingWrappingRepositoryV1DeleteByIdDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/gift-wrappings": {
+            "post": {
+                "tags": [
+                    "Gift wrapping"
+                ],
+                "description": "Create/Update new gift wrapping with data object values",
+                "operationId": "/V1/gift-wrappings",
+                "parameters": [
+                    {
+                        "name": "giftWrappingWrappingRepositoryV1SavePostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "data"
+                            ],
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                                },
+                                "storeId": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Gift wrapping"
+                ],
+                "description": "Return list of gift wrapping data objects based on search criteria",
+                "operationId": "/V1/gift-wrappings",
+                "parameters": [
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][field]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Field"
+                    },
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][value]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Value"
+                    },
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][conditionType]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Condition type"
+                    },
+                    {
+                        "name": "searchCriteria[sortOrders][0][field]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sorting field."
+                    },
+                    {
+                        "name": "searchCriteria[sortOrders][0][direction]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sorting direction."
+                    },
+                    {
+                        "name": "searchCriteria[pageSize]",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Page size."
+                    },
+                    {
+                        "name": "searchCriteria[currentPage]",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Current page."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/gift-wrapping-data-wrapping-search-results-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/gift-wrappings/{wrappingId}": {
+            "put": {
+                "tags": [
+                    "Gift wrapping"
+                ],
+                "description": "Create/Update new gift wrapping with data object values",
+                "operationId": "/V1/gift-wrappings/{wrappingId}",
+                "parameters": [
+                    {
+                        "name": "wrappingId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "giftWrappingWrappingRepositoryV1SavePutBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "data"
+                            ],
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                                },
+                                "storeId": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/reward/mine/use-reward": {
+            "post": {
+                "tags": [
+                    "Reward"
+                ],
+                "description": "Set reward points to quote",
+                "operationId": "/V1/reward/mine/use-reward",
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns/{id}/comments": {
+            "post": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Add comment",
+                "operationId": "/V1/returns/{id}/comments",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "rmaCommentManagementV1AddCommentPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "data"
+                            ],
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/rma-data-comment-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Comments list",
+                "operationId": "/V1/returns/{id}/comments",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-comment-search-result-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returnsAttributeMetadata/{attributeCode}": {
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Retrieve attribute metadata.",
+                "operationId": "/V1/returnsAttributeMetadata/{attributeCode",
+                "parameters": [
+                    {
+                        "name": "attributeCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/customer-data-attribute-metadata-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returnsAttributeMetadata/form/{formCode}": {
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Retrieve all attributes filtered by form code",
+                "operationId": "/V1/returnsAttributeMetadata/form/{formCode}",
+                "parameters": [
+                    {
+                        "name": "formCode",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer-data-attribute-metadata-interface"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returnsAttributeMetadata": {
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Get all attribute metadata.",
+                "operationId": "/V1/returnsAttributeMetadata",
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer-data-attribute-metadata-interface"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returnsAttributeMetadata/custom": {
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Get custom attribute metadata for the given Data object's attribute set",
+                "operationId": "/V1/returnsAttributeMetadata/custom",
+                "parameters": [
+                    {
+                        "name": "dataObjectClassName",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Data object class name",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/framework-metadata-object-interface"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns/{id}": {
+            "put": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Save RMA",
+                "operationId": "/V1/returns/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "rmaRmaManagementV1SaveRmaPutBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "rmaDataObject"
+                            ],
+                            "properties": {
+                                "rmaDataObject": {
+                                    "$ref": "#/definitions/rma-data-rma-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-rma-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Return data object for specified RMA id",
+                "operationId": "/V1/returns/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-rma-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Delete RMA",
+                "operationId": "/V1/returns/{id}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "rmaRmaRepositoryV1DeleteDeleteBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "rmaDataObject"
+                            ],
+                            "properties": {
+                                "rmaDataObject": {
+                                    "$ref": "#/definitions/rma-data-rma-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns": {
+            "post": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Save RMA",
+                "operationId": "/V1/returns",
+                "parameters": [
+                    {
+                        "name": "rmaRmaManagementV1SaveRmaPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "rmaDataObject"
+                            ],
+                            "properties": {
+                                "rmaDataObject": {
+                                    "$ref": "#/definitions/rma-data-rma-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-rma-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Return list of rma data objects based on search criteria",
+                "operationId": "/V1/returns",
+                "parameters": [
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][field]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Field"
+                    },
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][value]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Value"
+                    },
+                    {
+                        "name": "searchCriteria[filterGroups][0][filters][0][conditionType]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Condition type"
+                    },
+                    {
+                        "name": "searchCriteria[sortOrders][0][field]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sorting field."
+                    },
+                    {
+                        "name": "searchCriteria[sortOrders][0][direction]",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sorting direction."
+                    },
+                    {
+                        "name": "searchCriteria[pageSize]",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Page size."
+                    },
+                    {
+                        "name": "searchCriteria[currentPage]",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Current page."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-rma-search-result-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns/{id}/tracking-numbers": {
+            "post": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Add track",
+                "operationId": "/V1/returns/{id}/tracking-numbers",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "rmaTrackManagementV1AddTrackPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "track"
+                            ],
+                            "properties": {
+                                "track": {
+                                    "$ref": "#/definitions/rma-data-track-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Get track list",
+                "operationId": "/V1/returns/{id}/tracking-numbers",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/rma-data-track-search-result-interface"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns/{id}/tracking-numbers/{trackId}": {
+            "delete": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Remove track by id",
+                "operationId": "/V1/returns/{id}/tracking-numbers/{trackId}",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "trackId",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/returns/{id}/labels": {
+            "get": {
+                "tags": [
+                    "RMA"
+                ],
+                "description": "Get shipping label int the PDF format",
+                "operationId": "/V1/returns/{id}/labels",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "401 Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/V1/worldpay-guest-carts/{cartId}/payment-information": {
+            "post": {
+                "tags": [
+                    "Worldpay"
+                ],
+                "description": "Proxy handler for guest place order",
+                "operationId": "/V1/worldpay-guest-carts/{cartId}/payment-information",
+                "parameters": [
+                    {
+                        "name": "cartId",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "worldpayGuestPaymentInformationManagementProxyV1SavePaymentInformationAndPlaceOrderPostBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "email",
+                                "paymentMethod"
+                            ],
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "paymentMethod": {
+                                    "$ref": "#/definitions/quote-data-payment-interface"
+                                },
+                                "billingAddress": {
+                                    "$ref": "#/definitions/quote-data-address-interface"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "integer",
+                            "description": "Order ID."
+                        }
+                    },
+                    "400": {
+                        "description": "400 Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "error-response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message"
+                },
+                "errors": {
+                    "$ref": "#/definitions/error-errors"
+                },
+                "code": {
+                    "type": "integer",
+                    "description": "Error code"
+                },
+                "parameters": {
+                    "$ref": "#/definitions/error-parameters"
+                },
+                "trace": {
+                    "type": "string",
+                    "description": "Stack trace"
+                }
+            },
+            "required": [
+                "message"
+            ]
+        },
+        "error-errors": {
+            "type": "array",
+            "description": "Errors list",
+            "items": {
+                "$ref": "#/definitions/error-errors-item"
+            }
+        },
+        "error-errors-item": {
+            "type": "object",
+            "description": "Error details",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message"
+                },
+                "parameters": {
+                    "$ref": "#/definitions/error-parameters"
+                }
+            }
+        },
+        "error-parameters": {
+            "type": "array",
+            "description": "Error parameters list",
+            "items": {
+                "$ref": "#/definitions/error-parameters-item"
+            }
+        },
+        "error-parameters-item": {
+            "type": "object",
+            "description": "Error parameters item",
+            "properties": {
+                "resources": {
+                    "type": "string",
+                    "description": "ACL resource"
+                },
+                "fieldName": {
+                    "type": "string",
+                    "description": "Missing or invalid field name"
+                },
+                "fieldValue": {
+                    "type": "string",
+                    "description": "Incorrect field value"
+                }
+            }
+        },
+        "gift-card-account-data-gift-card-account-interface": {
+            "type": "object",
+            "description": "Gift Card Account data",
+            "properties": {
+                "gift_cards": {
+                    "type": "array",
+                    "description": "Cards codes",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "gift_cards_amount": {
+                    "type": "number",
+                    "description": "Cards amount in quote currency"
+                },
+                "base_gift_cards_amount": {
+                    "type": "number",
+                    "description": "Cards amount in base currency"
+                },
+                "gift_cards_amount_used": {
+                    "type": "number",
+                    "description": "Cards amount used in quote currency"
+                },
+                "base_gift_cards_amount_used": {
+                    "type": "number",
+                    "description": "Cards amount used in base currency"
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/gift-card-account-data-gift-card-account-extension-interface"
+                }
+            },
+            "required": [
+                "gift_cards",
+                "gift_cards_amount",
+                "base_gift_cards_amount",
+                "gift_cards_amount_used",
+                "base_gift_cards_amount_used"
+            ]
+        },
+        "gift-card-account-data-gift-card-account-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\GiftCardAccount\\Api\\Data\\GiftCardAccountInterface"
+        },
+        "quote-data-shipping-method-interface": {
+            "type": "object",
+            "description": "Interface ShippingMethodInterface",
+            "properties": {
+                "carrier_code": {
+                    "type": "string",
+                    "description": "Shipping carrier code."
+                },
+                "method_code": {
+                    "type": "string",
+                    "description": "Shipping method code."
+                },
+                "carrier_title": {
+                    "type": "string",
+                    "description": "Shipping carrier title. Otherwise, null."
+                },
+                "method_title": {
+                    "type": "string",
+                    "description": "Shipping method title. Otherwise, null."
+                },
+                "amount": {
+                    "type": "number",
+                    "description": "Shipping amount in store currency."
+                },
+                "base_amount": {
+                    "type": "number",
+                    "description": "Shipping amount in base currency."
+                },
+                "available": {
+                    "type": "boolean",
+                    "description": "The value of the availability flag for the current shipping method."
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/quote-data-shipping-method-extension-interface"
+                },
+                "error_message": {
+                    "type": "string",
+                    "description": "Shipping Error message."
+                },
+                "price_excl_tax": {
+                    "type": "number",
+                    "description": "Shipping price excl tax."
+                },
+                "price_incl_tax": {
+                    "type": "number",
+                    "description": "Shipping price incl tax."
+                }
+            },
+            "required": [
+                "carrier_code",
+                "method_code",
+                "amount",
+                "base_amount",
+                "available",
+                "error_message",
+                "price_excl_tax",
+                "price_incl_tax"
+            ]
+        },
+        "quote-data-shipping-method-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Quote\\Api\\Data\\ShippingMethodInterface"
+        },
+        "gift-wrapping-data-wrapping-interface": {
+            "type": "object",
+            "description": "Interface WrappingInterface",
+            "properties": {
+                "wrapping_id": {
+                    "type": "integer"
+                },
+                "design": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "base_price": {
+                    "type": "number"
+                },
+                "image_name": {
+                    "type": "string"
+                },
+                "image_base64_content": {
+                    "type": "string"
+                },
+                "base_currency_code": {
+                    "type": "string"
+                },
+                "website_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "image_url": {
+                    "type": "string",
+                    "description": "Wrapping image URL."
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/gift-wrapping-data-wrapping-extension-interface"
+                }
+            },
+            "required": [
+                "design",
+                "status",
+                "base_price"
+            ]
+        },
+        "gift-wrapping-data-wrapping-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\GiftWrapping\\Api\\Data\\WrappingInterface"
+        },
+        "gift-wrapping-data-wrapping-search-results-interface": {
+            "type": "object",
+            "description": "Interface WrappingSearchResultsInterface",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "description": "Items",
+                    "items": {
+                        "$ref": "#/definitions/gift-wrapping-data-wrapping-interface"
+                    }
+                },
+                "search_criteria": {
+                    "$ref": "#/definitions/framework-search-criteria-interface"
+                },
+                "total_count": {
+                    "type": "integer",
+                    "description": "Total count."
+                }
+            },
+            "required": [
+                "items",
+                "search_criteria",
+                "total_count"
+            ]
+        },
+        "framework-search-criteria-interface": {
+            "type": "object",
+            "description": "Search criteria interface.",
+            "properties": {
+                "filter_groups": {
+                    "type": "array",
+                    "description": "A list of filter groups.",
+                    "items": {
+                        "$ref": "#/definitions/framework-search-filter-group"
+                    }
+                },
+                "sort_orders": {
+                    "type": "array",
+                    "description": "Sort order.",
+                    "items": {
+                        "$ref": "#/definitions/framework-sort-order"
+                    }
+                },
+                "page_size": {
+                    "type": "integer",
+                    "description": "Page size."
+                },
+                "current_page": {
+                    "type": "integer",
+                    "description": "Current page."
+                }
+            },
+            "required": [
+                "filter_groups"
+            ]
+        },
+        "framework-search-filter-group": {
+            "type": "object",
+            "description": "Groups two or more filters together using a logical OR",
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "description": "A list of filters in this group",
+                    "items": {
+                        "$ref": "#/definitions/framework-filter"
+                    }
+                }
+            }
+        },
+        "framework-filter": {
+            "type": "object",
+            "description": "Filter which can be used by any methods from service layer.",
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "description": "Field"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Value"
+                },
+                "condition_type": {
+                    "type": "string",
+                    "description": "Condition type"
+                }
+            },
+            "required": [
+                "field",
+                "value"
+            ]
+        },
+        "framework-sort-order": {
+            "type": "object",
+            "description": "Data object for sort order.",
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "description": "Sorting field."
+                },
+                "direction": {
+                    "type": "string",
+                    "description": "Sorting direction."
+                }
+            },
+            "required": [
+                "field",
+                "direction"
+            ]
+        },
+        "rma-data-comment-interface": {
+            "type": "object",
+            "description": "Interface CommentInterface",
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "description": "Comment"
+                },
+                "rma_entity_id": {
+                    "type": "integer",
+                    "description": "Rma Id"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "Created_at"
+                },
+                "entity_id": {
+                    "type": "integer",
+                    "description": "Entity_id"
+                },
+                "customer_notified": {
+                    "type": "boolean",
+                    "description": "Is_customer_notified"
+                },
+                "visible_on_front": {
+                    "type": "boolean",
+                    "description": "Is_visible_on_front"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status"
+                },
+                "admin": {
+                    "type": "boolean",
+                    "description": "Is_admin"
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/rma-data-comment-extension-interface"
+                },
+                "custom_attributes": {
+                    "type": "array",
+                    "description": "Custom attributes values.",
+                    "items": {
+                        "$ref": "#/definitions/framework-attribute-interface"
+                    }
+                }
+            },
+            "required": [
+                "comment",
+                "rma_entity_id",
+                "created_at",
+                "entity_id",
+                "customer_notified",
+                "visible_on_front",
+                "status",
+                "admin"
+            ]
+        },
+        "rma-data-comment-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Rma\\Api\\Data\\CommentInterface"
+        },
+        "framework-attribute-interface": {
+            "type": "object",
+            "description": "Interface for custom attribute value.",
+            "properties": {
+                "attribute_code": {
+                    "type": "string",
+                    "description": "Attribute code"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Attribute value"
+                }
+            },
+            "required": [
+                "attribute_code",
+                "value"
+            ]
+        },
+        "rma-data-comment-search-result-interface": {
+            "type": "object",
+            "description": "Interface CommentSearchResultInterface",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "description": "Rma Status History list",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-comment-interface"
+                    }
+                },
+                "search_criteria": {
+                    "$ref": "#/definitions/framework-search-criteria-interface"
+                },
+                "total_count": {
+                    "type": "integer",
+                    "description": "Total count."
+                }
+            },
+            "required": [
+                "items",
+                "search_criteria",
+                "total_count"
+            ]
+        },
+        "customer-data-attribute-metadata-interface": {
+            "type": "object",
+            "description": "Customer attribute metadata interface.",
+            "properties": {
+                "frontend_input": {
+                    "type": "string",
+                    "description": "HTML for input element."
+                },
+                "input_filter": {
+                    "type": "string",
+                    "description": "Template used for input (e.g. \"date\")"
+                },
+                "store_label": {
+                    "type": "string",
+                    "description": "Label of the store."
+                },
+                "validation_rules": {
+                    "type": "array",
+                    "description": "Validation rules.",
+                    "items": {
+                        "$ref": "#/definitions/customer-data-validation-rule-interface"
+                    }
+                },
+                "multiline_count": {
+                    "type": "integer",
+                    "description": "Of lines of the attribute value."
+                },
+                "visible": {
+                    "type": "boolean",
+                    "description": "Attribute is visible on frontend."
+                },
+                "required": {
+                    "type": "boolean",
+                    "description": "Attribute is required."
+                },
+                "data_model": {
+                    "type": "string",
+                    "description": "Data model for attribute."
+                },
+                "options": {
+                    "type": "array",
+                    "description": "Options of the attribute (key => value pairs for select)",
+                    "items": {
+                        "$ref": "#/definitions/customer-data-option-interface"
+                    }
+                },
+                "frontend_class": {
+                    "type": "string",
+                    "description": "Class which is used to display the attribute on frontend."
+                },
+                "user_defined": {
+                    "type": "boolean",
+                    "description": "Current attribute has been defined by a user."
+                },
+                "sort_order": {
+                    "type": "integer",
+                    "description": "Attributes sort order."
+                },
+                "frontend_label": {
+                    "type": "string",
+                    "description": "Label which supposed to be displayed on frontend."
+                },
+                "note": {
+                    "type": "string",
+                    "description": "The note attribute for the element."
+                },
+                "system": {
+                    "type": "boolean",
+                    "description": "This is a system attribute."
+                },
+                "backend_type": {
+                    "type": "string",
+                    "description": "Backend type."
+                },
+                "is_used_in_grid": {
+                    "type": "boolean",
+                    "description": "It is used in customer grid"
+                },
+                "is_visible_in_grid": {
+                    "type": "boolean",
+                    "description": "It is visible in customer grid"
+                },
+                "is_filterable_in_grid": {
+                    "type": "boolean",
+                    "description": "It is filterable in customer grid"
+                },
+                "is_searchable_in_grid": {
+                    "type": "boolean",
+                    "description": "It is searchable in customer grid"
+                },
+                "attribute_code": {
+                    "type": "string",
+                    "description": "Code of the attribute."
+                }
+            },
+            "required": [
+                "frontend_input",
+                "input_filter",
+                "store_label",
+                "validation_rules",
+                "multiline_count",
+                "visible",
+                "required",
+                "data_model",
+                "options",
+                "frontend_class",
+                "user_defined",
+                "sort_order",
+                "frontend_label",
+                "note",
+                "system",
+                "backend_type",
+                "attribute_code"
+            ]
+        },
+        "customer-data-validation-rule-interface": {
+            "type": "object",
+            "description": "Validation rule interface.",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Validation rule name"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Validation rule value"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ]
+        },
+        "customer-data-option-interface": {
+            "type": "object",
+            "description": "Option interface.",
+            "properties": {
+                "label": {
+                    "type": "string",
+                    "description": "Option label"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Option value"
+                },
+                "options": {
+                    "type": "array",
+                    "description": "Nested options",
+                    "items": {
+                        "$ref": "#/definitions/customer-data-option-interface"
+                    }
+                }
+            },
+            "required": [
+                "label"
+            ]
+        },
+        "framework-metadata-object-interface": {
+            "type": "object",
+            "description": "Provides metadata about an attribute.",
+            "properties": {
+                "attribute_code": {
+                    "type": "string",
+                    "description": "Code of the attribute."
+                }
+            },
+            "required": [
+                "attribute_code"
+            ]
+        },
+        "rma-data-rma-interface": {
+            "type": "object",
+            "description": "Interface RmaInterface",
+            "properties": {
+                "increment_id": {
+                    "type": "string",
+                    "description": "Entity_id"
+                },
+                "entity_id": {
+                    "type": "integer",
+                    "description": "Entity_id"
+                },
+                "order_id": {
+                    "type": "integer",
+                    "description": "Order_id"
+                },
+                "order_increment_id": {
+                    "type": "string",
+                    "description": "Order_increment_id"
+                },
+                "store_id": {
+                    "type": "integer",
+                    "description": "Store_id"
+                },
+                "customer_id": {
+                    "type": "integer",
+                    "description": "Customer_id"
+                },
+                "date_requested": {
+                    "type": "string",
+                    "description": "Date_requested"
+                },
+                "customer_custom_email": {
+                    "type": "string",
+                    "description": "Customer_custom_email"
+                },
+                "items": {
+                    "type": "array",
+                    "description": "Items",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-item-interface"
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status"
+                },
+                "comments": {
+                    "type": "array",
+                    "description": "Comments list",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-comment-interface"
+                    }
+                },
+                "tracks": {
+                    "type": "array",
+                    "description": "Tracks list",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-track-interface"
+                    }
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/rma-data-rma-extension-interface"
+                },
+                "custom_attributes": {
+                    "type": "array",
+                    "description": "Custom attributes values.",
+                    "items": {
+                        "$ref": "#/definitions/framework-attribute-interface"
+                    }
+                }
+            },
+            "required": [
+                "increment_id",
+                "entity_id",
+                "order_id",
+                "order_increment_id",
+                "store_id",
+                "customer_id",
+                "date_requested",
+                "customer_custom_email",
+                "items",
+                "status",
+                "comments",
+                "tracks"
+            ]
+        },
+        "rma-data-item-interface": {
+            "type": "object",
+            "description": "Interface CategoryInterface",
+            "properties": {
+                "entity_id": {
+                    "type": "integer",
+                    "description": "Id"
+                },
+                "rma_entity_id": {
+                    "type": "integer",
+                    "description": "RMA id"
+                },
+                "order_item_id": {
+                    "type": "integer",
+                    "description": "Order_item_id"
+                },
+                "qty_requested": {
+                    "type": "integer",
+                    "description": "Qty_requested"
+                },
+                "qty_authorized": {
+                    "type": "integer",
+                    "description": "Qty_authorized"
+                },
+                "qty_approved": {
+                    "type": "integer",
+                    "description": "Qty_approved"
+                },
+                "qty_returned": {
+                    "type": "integer",
+                    "description": "Qty_returned"
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "Reason"
+                },
+                "condition": {
+                    "type": "string",
+                    "description": "Condition"
+                },
+                "resolution": {
+                    "type": "string",
+                    "description": "Resolution"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status"
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/rma-data-item-extension-interface"
+                }
+            },
+            "required": [
+                "entity_id",
+                "rma_entity_id",
+                "order_item_id",
+                "qty_requested",
+                "qty_authorized",
+                "qty_approved",
+                "qty_returned",
+                "reason",
+                "condition",
+                "resolution",
+                "status"
+            ]
+        },
+        "rma-data-item-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Rma\\Api\\Data\\ItemInterface"
+        },
+        "rma-data-track-interface": {
+            "type": "object",
+            "description": "Interface TrackInterface",
+            "properties": {
+                "entity_id": {
+                    "type": "integer",
+                    "description": "Entity id"
+                },
+                "rma_entity_id": {
+                    "type": "integer",
+                    "description": "Rma entity id"
+                },
+                "track_number": {
+                    "type": "string",
+                    "description": "Track number"
+                },
+                "carrier_title": {
+                    "type": "string",
+                    "description": "Carrier title"
+                },
+                "carrier_code": {
+                    "type": "string",
+                    "description": "Carrier code"
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/rma-data-track-extension-interface"
+                }
+            },
+            "required": [
+                "entity_id",
+                "rma_entity_id",
+                "track_number",
+                "carrier_title",
+                "carrier_code"
+            ]
+        },
+        "rma-data-track-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Rma\\Api\\Data\\TrackInterface"
+        },
+        "rma-data-rma-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Rma\\Api\\Data\\RmaInterface"
+        },
+        "rma-data-rma-search-result-interface": {
+            "type": "object",
+            "description": "Interface RmaSearchResultInterface",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "description": "Rma list",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-rma-interface"
+                    }
+                },
+                "search_criteria": {
+                    "$ref": "#/definitions/framework-search-criteria-interface"
+                },
+                "total_count": {
+                    "type": "integer",
+                    "description": "Total count."
+                }
+            },
+            "required": [
+                "items",
+                "search_criteria",
+                "total_count"
+            ]
+        },
+        "rma-data-track-search-result-interface": {
+            "type": "object",
+            "description": "Interface TrackSearchResultInterface",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "description": "Rma list",
+                    "items": {
+                        "$ref": "#/definitions/rma-data-track-interface"
+                    }
+                },
+                "search_criteria": {
+                    "$ref": "#/definitions/framework-search-criteria-interface"
+                },
+                "total_count": {
+                    "type": "integer",
+                    "description": "Total count."
+                }
+            },
+            "required": [
+                "items",
+                "search_criteria",
+                "total_count"
+            ]
+        },
+        "quote-data-payment-interface": {
+            "type": "object",
+            "description": "Interface PaymentInterface",
+            "properties": {
+                "po_number": {
+                    "type": "string",
+                    "description": "Purchase order number"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Payment method code"
+                },
+                "additional_data": {
+                    "type": "array",
+                    "description": "Payment additional details",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/quote-data-payment-extension-interface"
+                }
+            },
+            "required": [
+                "method"
+            ]
+        },
+        "quote-data-payment-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Quote\\Api\\Data\\PaymentInterface",
+            "properties": {
+                "agreement_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "quote-data-address-interface": {
+            "type": "object",
+            "description": "Interface AddressInterface",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Id"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region name"
+                },
+                "region_id": {
+                    "type": "integer",
+                    "description": "Region id"
+                },
+                "region_code": {
+                    "type": "string",
+                    "description": "Region code"
+                },
+                "country_id": {
+                    "type": "string",
+                    "description": "Country id"
+                },
+                "street": {
+                    "type": "array",
+                    "description": "Street",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "company": {
+                    "type": "string",
+                    "description": "Company"
+                },
+                "telephone": {
+                    "type": "string",
+                    "description": "Telephone number"
+                },
+                "fax": {
+                    "type": "string",
+                    "description": "Fax number"
+                },
+                "postcode": {
+                    "type": "string",
+                    "description": "Postcode"
+                },
+                "city": {
+                    "type": "string",
+                    "description": "City name"
+                },
+                "firstname": {
+                    "type": "string",
+                    "description": "First name"
+                },
+                "lastname": {
+                    "type": "string",
+                    "description": "Last name"
+                },
+                "middlename": {
+                    "type": "string",
+                    "description": "Middle name"
+                },
+                "prefix": {
+                    "type": "string",
+                    "description": "Prefix"
+                },
+                "suffix": {
+                    "type": "string",
+                    "description": "Suffix"
+                },
+                "vat_id": {
+                    "type": "string",
+                    "description": "Vat id"
+                },
+                "customer_id": {
+                    "type": "integer",
+                    "description": "Customer id"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Billing/shipping email"
+                },
+                "same_as_billing": {
+                    "type": "integer",
+                    "description": "Same as billing flag"
+                },
+                "customer_address_id": {
+                    "type": "integer",
+                    "description": "Customer address id"
+                },
+                "save_in_address_book": {
+                    "type": "integer",
+                    "description": "Save in address book flag"
+                },
+                "extension_attributes": {
+                    "$ref": "#/definitions/quote-data-address-extension-interface"
+                },
+                "custom_attributes": {
+                    "type": "array",
+                    "description": "Custom attributes values.",
+                    "items": {
+                        "$ref": "#/definitions/framework-attribute-interface"
+                    }
+                }
+            },
+            "required": [
+                "region",
+                "region_id",
+                "region_code",
+                "country_id",
+                "street",
+                "telephone",
+                "postcode",
+                "city",
+                "firstname",
+                "lastname",
+                "email"
+            ]
+        },
+        "quote-data-address-extension-interface": {
+            "type": "object",
+            "description": "ExtensionInterface class for @see \\Magento\\Quote\\Api\\Data\\AddressInterface",
+            "properties": {
+                "gift_registry_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

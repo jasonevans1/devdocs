@@ -12,6 +12,8 @@ See [Token-based authentication][] for instructions on requesting and using secu
 
 Each of the following links lead to a list of REST endpoints specific to a user type:
 
+* [Commerce REST API endpoints]({{site.baseurl}}/redoc/2.3/commerce-rest-api.html)
+
 * [Admin REST API endpoints]({{site.baseurl}}/redoc/2.3/admin-rest-api.html) - Available using an admin security token.
 
    {: .bs-callout .bs-callout-warning}
